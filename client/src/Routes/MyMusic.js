@@ -19,9 +19,14 @@ const MyMusic = ()=>{
         <LoggedInContainer currActiveScreen={"mymusic"}>
             <div className='text-white pt-8 text-2xl font-semibold pb-4 pl-2'>My Songs</div>
                 <div className='space-y-3 flex  flex-col-reverse'>    
-                          { songData &&  songData.map((info , key)=>{
+                          { songData ?  (songData.map((info , key)=>{
                             return <SingleCardSong key={key} info={info} playSound={()=>{}}/>                                          
-                         })}                                                   
+                         }))
+                         :
+                         <div className='ml-2 text-gray-400'>Nothing to show! Please Upload your first song..</div>
+                        } 
+                         
+
                 </div>
         </LoggedInContainer>
     )

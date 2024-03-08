@@ -9,8 +9,7 @@ const LikedSongs=()=>{
              const getData = async()=>{
                     const response = await makeAuthenticatedGETRequest("/song/get/likedSongs");
                     setLikedSongsData(response.data);
-                    console.log("liked song response" , response );
-                   
+                    console.log("liked song response" , response );                   
              }
              getData();
     }, [])
@@ -20,9 +19,11 @@ return (
 
                 <div className='text-white pt-8 text-2xl font-semibold pb-4 pl-2'>Liked Songs</div>
                 <div className='space-y-3 flex  flex-col-reverse'>    
-                          { likedSongsData.likedSongs &&  likedSongsData.likedSongs.map((info , key)=>{
-                            return <SingleCardSong key={key} info={info} playSound={()=>{}}/>                                          
-                         })}                                                   
+                          { likedSongsData?.likedSongs ? likedSongsData?.likedSongs &&  likedSongsData?.likedSongs?.map((info , key)=>{
+                            return <SingleCardSong key={key} info={info} playSound={()=>{}}/> 
+                         }) : 
+                         <div className="ml-2 text-gray-400">No Liked Songs Found...</div>
+                         }                                                   
                 </div>
 
     </LoggedInContainer>
